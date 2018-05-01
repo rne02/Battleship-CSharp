@@ -12,16 +12,13 @@ namespace Battlefield_CSharp
 {
 	class BattleShipBoard
 	{
-		
-		public static void Main(string[] args)
-		{
 			public static void displayBoard(char[,] Board)
 			{
 				int Row;
 				int Column;
 				
 				Console.WriteLine("  |0 1 2 3 4 5 6 7 8 9");
-				Console.WriteLine("")
+				Console.WriteLine("----------------------")
 					for (Row = 0; Row <= 9; Row++) 
 				{
 					Console.Write(Row.ToString() + " | " );
@@ -37,7 +34,7 @@ namespace Battlefield_CSharp
 			
 			class Player
 			{
-				char[,] Grid = new char[,][10,10];
+				char[,] Grid = new char[10,10];
 				public int HitCount = 0;
 				public int MissCount = 0;
 				int x = 0;
@@ -53,6 +50,20 @@ namespace Battlefield_CSharp
 					Console.WriteLine("Enter X");
 					string line = Console.WriteLine();
 					int value;
+					
+					if (int.TryParse(line,System.Globalization.NumberStyles out value))
+					{
+						x = value;
+					}
+					else
+					{
+						Console.WriteLine("Not an integer!");
+					}
+					public void AskCoordinates()
+				{
+					Console.WriteLine("Enter Y");
+				    line = Console.WriteLine();
+					
 					
 					if (int.TryParse(line,System.Globalization.NumberStyles out value))
 					{
@@ -142,6 +153,26 @@ namespace Battlefield_CSharp
 			{
 				
 				public static void Main(string[]args)
+				{
+					Console.Title = "Battleship!";
+					Console.WriteLine("Welcome to Battleship!\r\n\r\n");
+					Console.WriteLine("What is your name?");
+					string name = System.Console.ReadLine();
+					Console.WriteLine();
+					BattleShipBoard b - new BattleShipBoard();
+					Player p = new Player();
+					p.Randomize();
+					
+					while (p.getHitCount() < 17)
+					{
+						b.DisplayBoard(p.getGrid());
+						p.AskCoordinates();
+					}
+					
+					Console.WriteLine("Congrats, " + name + "! You Win!\r\n");
+					Console.WriteLine("You missed: " + p.getMissCount() + " times\r\n");
+					Console.WriteLine("Thanks for playing Battleship. Press enter to quit.");
+				}
 			}
 			
 			
